@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    asdasd
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.7.2-rc.0/web3.min.js"></script>
+<script>
+//     const Web3 = require('web3');
+
+// const web3 = new Web3("ws://localhost:7545");
+    const ethEnabled = () => {
+        if(window.ethereum)
+        {
+            window.web3 = new Web3(window.ethereum);
+            window.ethereum.request({ method: 'eth_requestAccounts' });
+            return true
+        }
+        return false;
+    }
+
+    if(!ethEnabled())
+    {
+        alert("Please Install MetaMask to Use this dApp");
+    }
+    else
+    {
+        console.log("MetaMask is Loaded");
+    }
+</script>
+
+</body>
+</html>
