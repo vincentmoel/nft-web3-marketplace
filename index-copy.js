@@ -2,24 +2,39 @@ const Web3 = require('web3');
 
 const MyContract = require('./src/abis/Kryptobird.json');
 
-const init = async() => {
+var contract;
+
+async function init(){
     const web3 = new Web3("http://localhost:7545");
+
+    const account_address = await web3.eth.getAccounts();
 
     const id = await web3.eth.net.getId();
     const deployedNetwork = MyContract.networks[id];
-    let contract = new web3.eth.Contract(
+
+    contract = new web3.eth.Contract(
         MyContract.abi, 
         deployedNetwork.address
     );
 
+    console.log(deployedNetwork.address);
 
-    const result = await contract.methods
-        .name()
-        .call();
+    // const result = await contract.methods
+    //     .totalSupply()
+    //     .call();
 
-    console.log(result);
+
+    // await contract.methods.mint("qwe").send({
+    //     from: address[0]
+        
+    // });
+
+  
+
+
 
     // const addresses = await web3.eth.getAccounts();
+    // console.log(addresses[0]);
     // const receipt = await contract.methods.emitEvent('hey').send({
     //     from:addresses[0]
     // });
@@ -47,5 +62,15 @@ const init = async() => {
     //     value : '10000'
     // })
 }
+
+async function getName()
+{
+    const result = await contract.methods
+        .name()
+        .call();
+    console.log(result);
+}
+
+
 
 init();

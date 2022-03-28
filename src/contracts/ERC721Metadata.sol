@@ -20,4 +20,9 @@ contract ERC721Metadata{
     {
         return _symbol;
     }
+
+    function setName(string memory newName) public
+    {
+        _name = newName;
+    }
 }
